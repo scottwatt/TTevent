@@ -1,0 +1,108 @@
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4; /* Background color for the whole container */
+}
+
+.map-container, 
+.form-container {
+    width: 48%; /* slightly less than half to account for potential padding/margins */
+    box-sizing: border-box;
+}
+
+
+
+.map-container iframe {
+    width: 100%;
+    height: 400px; /* Adjust as necessary */
+    border: none;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff; /* White background for the form container */
+    border-radius: 10px; /* Rounded corners for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow to give a bit of depth */
+}
+
+.form-container h2 {
+    margin: 0 0 20px 0;
+    color: #333;
+    font-size: 24px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.form-container div {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"],
+.form-container select,
+.form-container textarea {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px; /* Slightly rounded corners for inputs */
+    transition: border-color 0.3s; /* Smooth transition for hover and focus states */
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="tel"]:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #007BFF; /* Blue border for focus state */
+    outline: none; /* Remove default browser outline */
+}
+
+.form-container textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 120px; /* Minimum height for the text area */
+}
+
+.form-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007BFF; /* Blue background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Hand cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.form-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Optional: Make it responsive */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .map-container, 
+    .form-container {
+        width: 100%;
+    }
+}

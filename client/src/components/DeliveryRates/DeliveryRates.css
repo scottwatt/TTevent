@@ -1,0 +1,53 @@
+/* styles.css */
+
+.delivery-rate-container {
+    font-family: 'Arial', sans-serif;
+    padding: 2em;
+    color: #333;
+    max-width: 800px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.1);
+  }
+  
+  .title, .subtitle, .special-requirements-title {
+    color: #2E5A8A;
+    margin-bottom: 1em;
+  }
+  
+  .intro-text, .description, .special-requirements-desc {
+    margin-bottom: 1.5em;
+  }
+  
+  .rates-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2em;
+  }
+  
+  .rates-table, .table-header, .table-data {
+    border: 1px solid #2E5A8A;
+  }
+  
+  .table-header, .table-data {
+    padding: 0.5em 1em;
+    text-align: left;
+  }
+  
+  .important-note {
+    display: block;
+    margin-top: 2em;
+    color: #D9534F;
+  }
+  
+  .important-list {
+    margin-top: 1em;
+    list-style-type: none;
+  }
+  
+  .important-item {
+    padding: 0.5em 0;
+    color: #555;
+  }
+  

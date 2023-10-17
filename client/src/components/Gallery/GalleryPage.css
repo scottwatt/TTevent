@@ -1,0 +1,29 @@
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 10px; /* spacing between images */
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1200px; /* Adjust based on your preference */
+    margin: 0 auto;
+}
+
+.gallery-item img {
+    width: 100%; /* ensures the image takes the full width of its container */
+    height: 100%;
+    object-fit: cover; /* ensures the aspect ratio of images is maintained */
+    border-radius: 5px; /* optional: rounded corners */
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect to scale image */
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Optional: Add some responsiveness */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
