@@ -43,50 +43,70 @@ const categories = {
 // ];
 
 const SquareFootageCalculator = () => {
-    const allItems = Object.values(categories).flat();
-    const [quantities, setQuantities] = useState(Array(allItems.length).fill(0));
-    const [totalSqFt, setTotalSqFt] = useState(0);
-  
-    const handleQuantityChange = (index, value) => {
-      const updatedQuantities = [...quantities];
-      updatedQuantities[index] = value;
-      setQuantities(updatedQuantities);
-    };
-  
-    useEffect(() => {
-      const total = quantities.reduce((acc, qty, idx) => {
-        return acc + (qty * allItems[idx].sqFtEach);
-      }, 0);
-      setTotalSqFt(total);
-    }, [quantities, allItems]);
-  
-    return (
-        <div className="calculator-container">
-            {Object.keys(categories).map((category) => (
-                <div key={category} className="category-section">
-                    <h2 className="category-title">{category}</h2>
-                    {categories[category].map((item, index) => {
-                        const globalIndex = allItems.indexOf(item);
-                        return (
-                            <div key={index} className="item-row">
-                                <input
-                                    type="number"
-                                    value={quantities[globalIndex]}
-                                    onChange={e => handleQuantityChange(globalIndex, +e.target.value)}
-                                    className="quantity-input"
-                                />
-                                <span className="item-name">{item.name}</span>
-                                <span className="item-sqft">{item.sqFtEach} sq ft each</span>
-                                <span className="item-total">Total: {quantities[globalIndex] * item.sqFtEach} sq ft</span>
-                            </div>
-                        );
-                    })}
-                </div>
-            ))}
-            <div className="total-section"><strong>TOTAL SQ FT = {totalSqFt}</strong></div>
-        </div>
-    );
+  const allItems = Object.values(categories).flat();
+  const [quantities, setQuantities] = useState(Array(allItems.length).fill(0));
+  const [totalSqFt, setTotalSqFt] = useState(0);
+  const [openCategory, setOpenCategory] = useState(null);
+
+  const handleQuantityChange = (index, value) => {
+    const updatedQuantities = [...quantities];
+    updatedQuantities[index] = value;
+    setQuantities(updatedQuantities);
+  };
+
+  const incrementQuantity = (index) => {
+      handleQuantityChange(index, quantities[index] + 1);
+  };
+
+  const decrementQuantity = (index) => {
+      handleQuantityChange(index, Math.max(0, quantities[index] - 1));
+  };
+
+  const toggleCategory = (category) => {
+      if (openCategory === category) {
+          setOpenCategory(null);
+      } else {
+          setOpenCategory(category);
+      }
+  };
+
+  useEffect(() => {
+    const total = quantities.reduce((acc, qty, idx) => {
+      return acc + (qty * allItems[idx].sqFtEach);
+    }, 0);
+    setTotalSqFt(total);
+  }, [quantities, allItems]);
+
+  return (
+    <div className="calculator-container">
+        {Object.keys(categories).map((category) => (
+            <div key={category} className="category-section">
+                <h2 className="category-title" onClick={() => toggleCategory(category)}>
+                    {category}
+                </h2>
+                {openCategory === category && categories[category].map((item, index) => {
+                    const globalIndex = allItems.indexOf(item);
+                    return (
+                        <div key={index} className="item-row">
+                            <button onClick={() => decrementQuantity(globalIndex)}>-</button>
+                            <input
+                                type="number"
+                                value={quantities[globalIndex]}
+                                onChange={e => handleQuantityChange(globalIndex, +e.target.value)}
+                                className="quantity-input"
+                            />
+                            <button onClick={() => incrementQuantity(globalIndex)}>+</button>
+                            <span className="item-name">{item.name}</span>
+                            <span className="item-sqft">{item.sqFtEach} sq ft each</span>
+                            <span className="item-total">Total: {quantities[globalIndex] * item.sqFtEach} sq ft</span>
+                        </div>
+                    );
+                })}
+            </div>
+        ))}
+        <div className="total-section"><strong>TOTAL SQ FT = {totalSqFt}</strong></div>
+    </div>
+);
 }
-    
-  
-  export default SquareFootageCalculator;
+
+export default SquareFootageCalculator;

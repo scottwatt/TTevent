@@ -7,17 +7,19 @@ import ReactLoading from 'react-loading';
 
 const Shop = () => {
     TabTitle("Shop - SHEMA")
-    const [ menItems, setMenItems ] = useState()
-    const [ womenItems, setWomenItems ] = useState()
-    const [ kidsItems, setKidsItems ] = useState()
+    const [ tableItems, setTableItems ] = useState()
+    const [ tablewareItems, setTablewareItems ] = useState()
+    const [ chairsItems, setChairsItems ] = useState()
+    const [ dancefloorItems, setDancefloorItems ] = useState()
     const [ loading , setLoading ] = useState(true) 
 
     useEffect(() => {
-        axios.get("https://shema-backend.vercel.app/api/items")
+        axios.get("http://localhost:5002/api/items")
             .then(res => {
-                setMenItems(res.data.filter((item) => item.category === "men"))
-                setKidsItems(res.data.filter((item) => item.category === "kids" ))
-                setWomenItems(res.data.filter((item) => item.category === "women"))
+                setTableItems(res.data.filter((item) => item.category === "tables"))
+                setTablewareItems(res.data.filter((item) => item.category === "tableware" ))
+                setChairsItems(res.data.filter((item) => item.category === "chairs"))
+                setDancefloorItems(res.data.filter((item) => item.category === "dancefloor"))
                 setLoading(false)
             })
             .catch(err => console.log(err))
@@ -28,9 +30,11 @@ const Shop = () => {
     return ( 
         <div className="shop__contianer">
             {loading && <ReactLoading type="balls" color='#FFE26E'  height={100} width={100} className='container h-100 w-10 justify-self-center align-self-center m-auto'/>}
-            {menItems && <ShopCategory name="Tables" key="men" items={menItems}/>}
-            {womenItems && <ShopCategory name="Tableware" key="women" items={womenItems}/>}
-            {kidsItems && <ShopCategory name="Chairs and Barstools" key="kids" items={kidsItems}/>}
+            {tableItems && <ShopCategory name="Tables" key="table" items={tableItems}/>}
+            {tablewareItems && <ShopCategory name="Tableware" key="D" items={tablewareItems}/>}
+            {chairsItems && <ShopCategory name="Chairs and Barstools" key="chairs" items={chairsItems}/>}
+            {dancefloorItems && <ShopCategory name="Dancefloor" key="dancefloor" items={dancefloorItems}/>}
+
         </div>
      );
 }

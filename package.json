@@ -1,13 +1,13 @@
 {
-  "name": "T-Tevents",
+  "name": "ttevents",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
+    "type": "git"
   },
   "author": "Scott Wattenbarger",
-  "license": "ISC",
+  "license": "ISC"
 }

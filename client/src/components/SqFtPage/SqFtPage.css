@@ -44,6 +44,7 @@
     font-size: 16px;
     margin-right: 10px;
     color: #444;
+    padding-left: 25px;
 }
 
 .item-sqft, .item-total {
@@ -63,3 +64,58 @@
     color: #333;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: blue;
+    margin: 0 10px;
+    outline: none;
+    vertical-align: middle;  /* Align the buttons vertically with the input */
+}
+
+/* Hide the native up-down arrows in number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Styling for the quantity input */
+.quantity-input {
+    width: 50px;
+    padding: 5px;
+    margin: 0 5px;  /* Adjusted margin for better alignment */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;  /* Center the number in the input box */
+}
+
+/* Style for the category title with the dropdown arrow */
+.category-title {
+    position: relative;  /* Relative positioning for the arrow icon */
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    padding: 10px;  /* Padding for better appearance */
+    background-color: #e6e6e6;  /* Light background color */
+    border-bottom: 2px solid #666;
+    cursor: pointer;  /* Indicate it's clickable */
+}
+
+/* Style for the dropdown arrow icon */
+.category-title::after {
+    content: 'v';  /* Using 'v' instead of the triangle */
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    height: 10%;
+    transform: translateY(-50%);
+    color: turquoise;  /* Making it light blue */
+    font-size: 1.1em; 
+}

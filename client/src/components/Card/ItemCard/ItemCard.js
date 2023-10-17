@@ -9,6 +9,15 @@ import { WishItemsContext } from '../../../Context/WishItemsContext';
 
 const ItemCard = (props) => {
     const [isHovered, setIsHovered] = useState(false)
+
+    const imageUrlBase = "http://localhost:5002/public/";
+
+    const image1 = props.item.image?.[1]?.filename;
+    const image2 = props.item.image?.[0]?.filename;
+
+    const imgSrc1 = image1 ? `${imageUrlBase}${props.item.category}/${image1}` : null;
+    const imgSrc2 = image2 ? `${imageUrlBase}${props.item.category}/${image2}` : null;
+    
     const  cartItemsContext  = useContext(CartItemsContext)
     const wishItemsContext = useContext(WishItemsContext)
 
@@ -22,13 +31,16 @@ const ItemCard = (props) => {
 
     return ( 
         <div className="product__card__card">
-            <div className="product__card">
-                <div className="product__image" 
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                > 
-                    {isHovered? <img src={`https://shema-backend.vercel.app/public/${props.item.category}/${props.item.image[1].filename}`} alt="item" className="product__img"/>: <img src= {`https://shema-backend.vercel.app/public/${props.item.category}/${props.item.image[0].filename}`} alt="item" className="product__img"/> }
-                </div>
+        <div className="product__card">
+            <div className="product__image" 
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            > 
+                {isHovered ? 
+                    (imgSrc1 ? <img src={imgSrc1} alt="item" className="product__img"/> : null) :
+                    (imgSrc2 ? <img src={imgSrc2} alt="item" className="product__img"/> : null)
+                }
+            </div>
                 <div className="product__card__detail">
                     <div className="product__name">
                         <Link to={`/item/${props.item.category}/${props.item._id}`}>
